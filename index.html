@@ -85,24 +85,24 @@ body::after{content:'';position:fixed;inset:0;z-index:9000;pointer-events:none;b
 }
 
 /* Carousel */
-.hero-carousel{
-  position:absolute;
-  top:0;
-  right:0;
-  bottom:0;
-  width:min(60%, 980px);
-  overflow:hidden;
-}
+.hero-carousel{position:absolute;inset:0;overflow:hidden;}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s cubic-bezier(0.4,0,0.2,1);}
 .hero-slide.active{opacity:1;}
 .slide-img{
   position:absolute;inset:0;
-  background-size:cover;
-  background-position:center;
+  background-size:cover;background-position:center;
   animation:kenburns 7s ease-out forwards;
 }
+/* Simple dark gradient left side only — no heavy overlay */
 .slide-overlay{
-  display:none;
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to right,
+    rgba(42,18,8,0.96) 0%,
+    rgba(42,18,8,0.68) 50%,
+    rgba(42,18,8,0.22) 100%
+  ),
+  linear-gradient(to top, rgba(42,18,8,0.88) 0%, transparent 45%);
 }
 
 /* Dots */
@@ -117,10 +117,8 @@ body::after{content:'';position:fixed;inset:0;z-index:9000;pointer-events:none;b
 .hero-content{
   position:relative;z-index:2;
   display:flex;flex-direction:column;justify-content:flex-end;
-  padding:0 60px 80px;
-  max-width:520px;
+  padding:0 60px 80px;max-width:700px;
 }
-.hero-content > *{position:relative;z-index:1;}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:12px;
   font-size:11px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;
@@ -137,7 +135,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9000;pointer-events:none;b
 .hero-h1 em{font-style:italic;color:var(--sand);display:block;}
 .hero-body{
   font-size:16px;font-weight:300;line-height:1.8;
-  color:rgba(255,255,255,0.72);max-width:460px;margin-bottom:40px;
+  color:rgba(255,255,255,0.52);max-width:460px;margin-bottom:40px;
   opacity:0;animation:slideUp 0.8s 1s var(--ease) forwards;
 }
 .hero-actions{
@@ -146,19 +144,6 @@ body::after{content:'';position:fixed;inset:0;z-index:9000;pointer-events:none;b
 }
 .btn-hero{font-family:var(--sans);font-size:14px;font-weight:500;padding:13px 34px;background:var(--rust);color:white;border:none;cursor:pointer;border-radius:var(--r);transition:background 0.2s,transform 0.15s,box-shadow 0.2s;}
 .btn-hero:hover{background:var(--rust-dk);transform:translateY(-2px);box-shadow:0 10px 28px rgba(201,75,42,0.32);}
-.btn-ghost{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.18);}
-
-@media (max-width: 900px){
-  .hero-carousel{
-    top:0;
-    right:0;
-    bottom:0;
-    width:100%;
-  }
-  .hero-content{
-    padding:0 24px 44px;max-width:100%;
-  }
-}
 .btn-ghost{font-family:var(--sans);font-size:14px;font-weight:400;padding:12px 26px;background:transparent;color:rgba(255,255,255,0.52);border:1px solid rgba(255,255,255,0.18);border-radius:var(--r);cursor:pointer;display:flex;align-items:center;gap:8px;transition:color 0.2s,border-color 0.2s;}
 .btn-ghost:hover{color:white;border-color:rgba(255,255,255,0.42);}
 .arr{display:inline-block;transition:transform 0.2s;}
@@ -204,7 +189,7 @@ body::after{content:'';position:fixed;inset:0;z-index:9000;pointer-events:none;b
 .intro-col{padding:28px 44px;display:flex;flex-direction:column;}
 .intro-col:first-child{padding-left:0;}.intro-col:last-child{padding-right:0;}
 .intro-div{background:rgba(255,255,255,0.08);}
-.intro-num{font-family:var(--disp);font-style:italic;font-size:48px;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:14px;font-weight:400;}
+.intro-num{font-family:var(--disp);font-style:italic;font-size:48px;color:rgba(255,255,255,0.55);line-height:1;margin-bottom:14px;font-weight:400;}
 .intro-col h3{font-size:13px;font-weight:300;color:rgba(255,255,255,0.86);margin-bottom:8px;}
 .intro-col p{font-size:13px;font-weight:300;color:rgba(255,255,255,0.36);line-height:1.75;flex:1;}
 .intro-col a{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:12px;color:var(--sand);text-decoration:none;cursor:pointer;transition:gap 0.2s;align-self:flex-start;}
@@ -497,135 +482,6 @@ footer{background:var(--terra-dk);padding:64px 0 28px;}
 .btn-tk.pri:hover{background:var(--rust-dk);}
 .btn-tk.sec{background:transparent;color:var(--terra);border:1.5px solid var(--terra);transition:background 0.2s,color 0.2s;}
 .btn-tk.sec:hover{background:var(--terra);color:white;}
-
-/* Responsive */
-@media (max-width: 1280px){
-  #nav{padding:0 32px;}
-  .container{padding:0 40px;}
-  .hero-content{padding:0 40px 72px;}
-  .hero-bottom{padding:18px 40px;}
-  .hero-dots{right:40px;}
-}
-
-@media (max-width: 1100px){
-  .hero-carousel{width:56%;}
-  .hero-content{max-width:460px;}
-  .intro-col{padding:24px 28px;}
-  .about-grid,
-  .book-grid,
-  .comm-grid,
-  .ft-grid,
-  .bp-layout,
-  .fl{gap:32px;}
-  .comm-grid{grid-template-columns:1fr 1fr;}
-  .cc.feat{grid-column:1 / -1;}
-  .j-grid,
-  .jp-grid,
-  .tk-grid{grid-template-columns:repeat(2,1fr);}
-  .shop-grid{grid-template-columns:repeat(3,1fr);}
-  .ft-grid{grid-template-columns:repeat(2,1fr);}
-}
-
-@media (max-width: 900px){
-  body{cursor:auto;}
-  body::after{opacity:0.012;}
-  #nav{
-    height:auto;
-    padding:12px 24px;
-    align-items:flex-start;
-    gap:12px;
-    flex-wrap:wrap;
-  }
-  .nav-links{
-    width:100%;
-    gap:18px;
-    overflow-x:auto;
-    padding-bottom:4px;
-    scrollbar-width:none;
-  }
-  .nav-links::-webkit-scrollbar{display:none;}
-  #hero{min-height:820px;}
-  .hero-carousel{width:100%;}
-  .hero-content{padding:0 24px 44px;max-width:100%;}
-  .hero-actions{flex-wrap:wrap;}
-  .hero-bottom{
-    padding:18px 24px 24px;
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:16px 24px;
-    align-items:start;
-  }
-  .scroll-hint{justify-self:end;}
-  .container{padding:0 24px;}
-  .sec,
-  #about,
-  #book-home,
-  #testi,
-  #comm-home,
-  #journal-home{padding:72px 0;}
-  .intro-grid,
-  .about-grid,
-  .book-grid,
-  .comm-grid,
-  .bp-layout,
-  .fl,
-  .guides-grid,
-  .shop-grid,
-  .tk-grid{grid-template-columns:1fr;}
-  .intro-div{display:none;}
-  .intro-col,
-  .intro-col:first-child,
-  .intro-col:last-child{padding:22px 0;}
-  .book-grid{gap:40px;}
-  .comm-hdr,
-  .j-hdr{flex-direction:column;align-items:flex-start;gap:18px;}
-  .j-grid,
-  .jp-grid{grid-template-columns:repeat(2,1fr);}
-  .bp-sticky,
-  .sidebar{position:static;top:auto;}
-  .ft-grid{grid-template-columns:repeat(2,1fr);gap:28px;}
-  .ft-bot{flex-direction:column;gap:12px;}
-  .t-card{align-items:flex-start;flex-wrap:wrap;}
-  .t-badge,
-  .t-right{margin-left:0;text-align:left;}
-  .ihero{padding:110px 0 56px;}
-  .ihero-bg{right:-18px;font-size:clamp(72px,22vw,140px);}
-}
-
-@media (max-width: 680px){
-  #nav{padding:10px 18px;}
-  .nav-logo{font-size:15px;}
-  .nav-link{font-size:12px;white-space:nowrap;}
-  .nav-cta{padding:8px 16px;}
-  #hero{min-height:900px;}
-  .hero-content{padding:0 18px 32px;}
-  .hero-eyebrow{font-size:10px;gap:10px;}
-  .hero-body{font-size:15px;line-height:1.7;margin-bottom:28px;}
-  .hero-actions{flex-direction:column;align-items:stretch;}
-  .btn-hero,
-  .btn-ghost{width:100%;justify-content:center;}
-  .hero-bottom{
-    grid-template-columns:1fr;
-    gap:12px;
-    padding:16px 18px 20px;
-  }
-  .scroll-hint{justify-self:start;}
-  .hero-dots{right:18px;bottom:86px;}
-  .container{padding:0 18px;}
-  .sec-body,
-  .about-text p{font-size:16px;line-height:1.75;}
-  .callout{padding:20px 18px;}
-  .j-grid,
-  .jp-grid,
-  .shop-grid{grid-template-columns:1fr;}
-  .ft-grid{grid-template-columns:1fr;}
-  .crisis{padding:14px 16px;flex-direction:column;}
-  .shop-img,
-  .jp-thumb-img,
-  .jc-img-real{height:220px;}
-  .ihero{padding:104px 0 48px;}
-  .ihero p{font-size:14px;}
-}
 </style>
 </head>
 <body>
@@ -899,7 +755,7 @@ footer{background:var(--terra-dk);padding:64px 0 28px;}
     <div class="container">
       <div class="crisis">
         <span style="font-size:17px;flex-shrink:0;">🔹</span>
-        <p><strong>If your child is in crisis:</strong> iCall — 9152987821 · Vandrevala Foundation — 1860-2662-345 (24/7). This publication is for awareness only and does not replace professional medical advice.</p>
+        <p><strong>If your child is in crisis, please reach out immediately:</strong> <strong>iCall (TISS)</strong> — <a href="tel:9152987821" style="color:rgba(255,255,255,0.55);text-decoration:none;">9152987821</a> (Mon–Sat, 8am–10pm) · <strong>Vandrevala Foundation</strong> — <a href="tel:18602662345" style="color:rgba(255,255,255,0.55);text-decoration:none;">1860-2662-345</a> (24/7, free) · <strong>iCall WhatsApp</strong> — <a href="https://wa.me/919152987821" target="_blank" style="color:rgba(255,255,255,0.55);text-decoration:none;">+91 9152987821</a> · <strong>NIMHANS Helpline</strong> — <a href="tel:08046110007" style="color:rgba(255,255,255,0.55);text-decoration:none;">080-46110007</a> · For OCD-specific support, consult a licensed therapist trained in <strong>ERP (Exposure &amp; Response Prevention)</strong>. This publication is for awareness only and does not replace professional clinical advice.</p>
       </div>
       <div class="ft-grid">
         <div>
@@ -908,9 +764,9 @@ footer{background:var(--terra-dk);padding:64px 0 28px;}
         </div>
         <div class="ft-col"><div class="ft-col-h">Explore</div><ul><li><a onclick="go('book')">The Book</a></li><li><a onclick="go('learn')">Learn Hub</a></li><li><a onclick="go('community')">Community</a></li><li><a onclick="go('toolkit')">Toolkit</a></li></ul></div>
         <div class="ft-col"><div class="ft-col-h">Help</div><ul><li><a onclick="go('therapist')">Find a Therapist</a></li><li><a onclick="go('journal')">Journal</a></li><li><a>Crisis Resources</a></li></ul></div>
-        <div class="ft-col"><div class="ft-col-h">Contact</div><ul><li><a>hello@overchaosanddoubt.in</a></li><li><a>Instagram</a></li><li><a>Newsletter</a></li></ul></div>
+        <div class="ft-col"><div class="ft-col-h">Contact</div><ul><li><a>hello@overchaosanddoubt.in</a></li><li><a href="https://www.instagram.com/overchaos_doubt?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a></li><li><a>Newsletter</a></li></ul></div>
       </div>
-      <div class="ft-bot"><p>© 2026 Over Chaos &amp; Doubt · Not a substitute for clinical advice</p><p>UDIT Major Design Project 2026</p></div>
+      <div class="ft-bot"><p>© 2026 Over Chaos &amp; Doubt · Not a substitute for clinical advice</p></div>
     </div>
   </footer>
 </div>
